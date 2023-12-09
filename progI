@@ -1,0 +1,145 @@
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(PagamentoSupermercado());
+}
+
+class PagamentoSupermercado extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      theme: ThemeData(
+        primaryColor: Colors.blue, // Define a cor primária como azul
+        scaffoldBackgroundColor:
+            Colors.white, // Define a cor de fundo do scaffold como preta
+        appBarTheme: AppBarTheme(
+          backgroundColor:
+              Colors.blue, // Define a cor da barra de navegação como azul
+        ),
+      ),
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text('Pagamento'),
+        ),
+        drawer: MenuDrawer(), // Adiciona o menu lateral (Drawer)
+        body: PagamentoForm(),
+      ),
+    );
+  }
+}
+
+class PagamentoForm extends StatefulWidget {
+  @override
+  _PagamentoFormState createState() => _PagamentoFormState();
+}
+
+class _PagamentoFormState extends State<PagamentoForm> {
+  // Informações do produto
+  String nomeProduto = 'Nome do Pro';
+  double precoProduto = 19.99;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Formulário de Pagamento'),
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            // Ícone de carrinho de supermercado
+            Icon(
+              Icons.shopping_cart,
+              size: 100,
+              color: Colors.blue,
+            ),
+            SizedBox(height: 20),
+            // Informações do produto
+            Text(
+              'Produto: $nomeProduto',
+              style: TextStyle(fontSize: 18),
+            ),
+            Text(
+              'Preço: R\$ $precoProduto',
+              style: TextStyle(fontSize: 18),
+            ),
+            SizedBox(height: 20),
+            // Opções de pagamento
+            ElevatedButton.icon(
+              onPressed: () {
+                // Implemente a lógica para pagamento com cartão de crédito aqui
+              },
+              icon: Icon(Icons.credit_card),
+              label: Text('Cartão de Crédito'),
+            ),
+            ElevatedButton.icon(
+              onPressed: () {
+                // Implemente a lógica para pagamento com cartão de débito aqui
+              },
+              icon: Icon(Icons.payment),
+              label: Text('Cartão de Débito'),
+            ),
+            ElevatedButton.icon(
+              onPressed: () {
+                // Implemente a lógica para pagamento com Pix aqui
+              },
+              icon: Icon(Icons.attach_money),
+              label: Text('Pix'),
+            ),
+            ElevatedButton.icon(
+              onPressed: () {
+                // Implemente a lógica para pagamento com PayPal aqui
+              },
+              icon: Icon(Icons.payment),
+              label: Text('PayPal'),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class MenuDrawer extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Drawer(
+      child: ListView(
+        padding: EdgeInsets.zero,
+        children: <Widget>[
+          DrawerHeader(
+            decoration: BoxDecoration(
+              color: Colors.blue,
+            ),
+            child: Text(
+              'Menu',
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 24,
+              ),
+            ),
+          ),
+          ListTile(
+            title: Text('Perfil'),
+            onTap: () {
+              // Adicione ação para o item "Perfil" aqui...
+            },
+          ),
+          ListTile(
+            title: Text('Início'),
+            onTap: () {
+              // Adicione ação para o item "Início" aqui...
+            },
+          ),
+          ListTile(
+            title: Text('Sair'),
+            onTap: () {
+              // Adicione ação para o item "Sair" aqui...
+            },
+          ),
+        ],
+      ),
+    );
+  }
+}
